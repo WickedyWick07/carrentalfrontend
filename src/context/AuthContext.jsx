@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const API_BASE_URL = process.env.VITE_API_URL || "https://carrentalbackend-27ee820fd956.herokuapp.com/api";
+const API_BASE_URL = const API_BASE_URL = "/api";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await axios.get(`${API_URL}user/`);
+      const response = await axios.get(`${API_BASE_URL}user/`);
       setCurrentUser(response.data);
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       const headers = {
         Authorization: `Bearer ${accessToken}`, // Fixed syntax error by adding backticks
       };
-      const response = await axios.get(`${API_URL}rental-details/`, { headers });
+      const response = await axios.get(`${API_BASE_URL}rental-details/`, { headers });
       return response.data;
     } catch (error) {
       console.error('Error fetching user rentals:', error);
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post(`${API_URL}login/`, { username, password });
+      const response = await axios.post(`${API_BASE_URL}login/`, { username, password });
       const { access, refresh } = response.data;
       localStorage.setItem('access_token', access);
       localStorage.setItem('refresh_token', refresh);
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
     if (!refresh_token) throw new Error("No refresh token available");
 
     try {
-      const response = await axios.post(`${API_URL}token/refresh/`, { refresh: refresh_token });
+      const response = await axios.post(`${API_BASE_URL}token/refresh/`, { refresh: refresh_token });
       const newAccessToken = response.data.access;
       localStorage.setItem('access_token', newAccessToken);
       setToken(newAccessToken);

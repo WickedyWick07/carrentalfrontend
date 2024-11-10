@@ -2,8 +2,7 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = process.env.VITE_API_URL || "https://carrentalbackend-27ee820fd956.herokuapp.com/api";
-
+const API_BASE_URL = "/api";
 
 const refreshToken = async () => {
   const refresh_token = localStorage.getItem('refresh_token');
