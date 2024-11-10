@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_BASE_URL = process.env.VITE_API_URL || "https://carrentalbackend-27ee820fd956.herokuapp.com/api";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

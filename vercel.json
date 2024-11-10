@@ -1,9 +1,6 @@
 {
     "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "https://carrentalbackend-27ee820fd956.herokuapp.com/api/$1"
-      }
+      { "source": "/api/:path*", "destination": "https://carrentalbackend-27ee820fd956.herokuapp.com/api/:path*" }
     ]
   }
   
