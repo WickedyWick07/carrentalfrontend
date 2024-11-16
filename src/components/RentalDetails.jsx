@@ -74,7 +74,7 @@ const CarDetails = ({ carId }) => {
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL = 'http://localhost:8000/api/';
+  const API_URL = import.meta.VITE_API_URL || "https://carrentalbackend-0zuw.onrender.com/api/"
 
   useEffect(() => {
     const fetchCarDetails = async () => {
@@ -83,7 +83,7 @@ const CarDetails = ({ carId }) => {
         const authHeaders = {
           Authorization: `Bearer ${token}`,
         };
-        const carResponse = await axios.get(`${API_URL}cars/${carId}/`, { headers: authHeaders });
+        const carResponse = await axios.get(`${API_URL}/cars/${carId}/`, { headers: authHeaders });
         setCar(carResponse.data);
         setLoading(false);
       } catch (error) {

@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       const headers = {
         Authorization: `Bearer ${accessToken}`, // Fixed syntax error by adding backticks
       };
-      const response = await axios.get(`${API_BASE_URL}rental-details/`, { headers });
+      const response = await axios.get(`${API_BASE_URL}/rental-details/`, { headers });
       return response.data;
     } catch (error) {
       console.error('Error fetching user rentals:', error);
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
     if (!refresh_token) throw new Error("No refresh token available");
 
     try {
-      const response = await axios.post(`${API_BASE_URL}token/refresh/`, { refresh: refresh_token });
+      const response = await axios.post(`${API_BASE_URL}/token/refresh/`, { refresh: refresh_token });
       const newAccessToken = response.data.access;
       localStorage.setItem('access_token', newAccessToken);
       setToken(newAccessToken);
