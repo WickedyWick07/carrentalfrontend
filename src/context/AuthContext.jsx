@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}user/`);
+      const response = await axios.get(`${API_BASE_URL}/user/`);
       setCurrentUser(response.data);
     } catch (error) {
       if (error.response && error.response.status === 401) {
