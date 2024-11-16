@@ -83,7 +83,7 @@ const CarDetails = ({ carId }) => {
         const authHeaders = {
           Authorization: `Bearer ${token}`,
         };
-        const carResponse = await axios.get(`${API_URL}/cars/${carId}/`, { headers: authHeaders });
+        const carResponse = await axios.get(`${API_URL}cars/${carId}/`, { headers: authHeaders });
         setCar(carResponse.data);
         setLoading(false);
       } catch (error) {
