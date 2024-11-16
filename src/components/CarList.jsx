@@ -28,6 +28,11 @@ function CarList(){
 
         }
 
+        function getFullImageUrl(imagePath){
+            return `https://xecpdpctpkqjzukczgoe.supabase.co/storage/v1/object/public/car-images/${imagePath}`;
+        }
+
+
         
 
         return(
@@ -44,7 +49,7 @@ function CarList(){
                         >
                             {car.image && (
                                 <img
-                                    src={car.image}
+                                    src={getFullImageUrl(car.image)}
                                     alt={`${car.make} ${car.model}`}
                                     className="h-32 w-32 lg:h-3/4 lg:w-48 rounded-lg mr-4 object-cover" // Adjusted image styling
                                 />
