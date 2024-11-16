@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const API_BASE_URL = "https://carrentalbackend-0zuw.onrender.com/api/";
+const API_BASE_URL = "https://carrentalbackend-0zuw.onrender.com/api";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
