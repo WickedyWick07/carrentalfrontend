@@ -8,7 +8,7 @@ import Header from "./Header";
 function CarList(){
     
     const [cars, setCars] = useState([])
-    const API_URL = "http://localhost:8000/api/"
+    const API_URL = import.meta.VITE_API_URL || "https://carrentalbackend-0zuw.onrender.com/api/"
 
     useEffect(() =>{
         axios.get(`${API_URL}cars`)

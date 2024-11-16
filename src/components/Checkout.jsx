@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FolderPen, CarFront, BadgeDollarSign } from 'lucide-react';
 
 const Checkout = () => {
-  const API_URL = 'http://localhost:8000/api/';
+  const API_URL = "https://carrentalbackend-0zuw.onrender.com/api/"
   const { rentalId } = useParams(); // Extract rentalId from URL parameters
   const [rental, setRental] = useState(null);
   const [car, setCar] = useState(null);

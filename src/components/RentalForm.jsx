@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import dayjs from "dayjs"; 
 import { UserCircle2, CarFrontIcon, Calendar1Icon, Clock1 } from "lucide-react";
-const API_URL = "http://localhost:8000/api/";
+const API_URL =  import.meta.VITE_API_URL || "https://carrentalbackend-0zuw.onrender.com/api"
 
 function RentalForm() {
   const location = useLocation();

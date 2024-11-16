@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { CreditCard, Calendar } from "lucide-react";
 import Header from "./Header";
 function PaymentForm() {
-  const API_URL = "http://localhost:8000/api/";
+  const API_URL =  import.meta.VITE_API_URL || "https://carrentalbackend-0zuw.onrender.com/api/"
   const location = useLocation();
   const rentalId = new URLSearchParams(location.search).get("rentalId");
   const { currentUser, refreshToken } = useAuth();
