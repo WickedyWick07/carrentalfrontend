@@ -43,7 +43,7 @@ function RentalForm() {
         return_time: formattedReturnTime,
         return_date: dayjs(returnDate).format("YYYY-MM-DD"),
       };
-      const response = await axios.post(`${API_URL}create-rental/`, payload, {
+      const response = await axios.post(`${API_URL}/create-rental/`, payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },

@@ -49,7 +49,7 @@ function CarList(){
                         >
                             {car.image && (
                                 <img
-                                    src={getFullImageUrl(car.image)}
+                                    src={car.image}
                                     alt={`${car.make} ${car.model}`}
                                     className="h-32 w-32 lg:h-3/4 lg:w-48 rounded-lg mr-4 object-cover" // Adjusted image styling
                                 />
