@@ -52,8 +52,10 @@ function PaymentForm() {
   const handleCvvChange = (e) => {
     const input = e.target.value;
     const cleaned = input.replace(/\D/g, ""); // Remove all non-digit characters
-    setCvv(cleaned);
+    const truncated = cleaned.slice(0, 3); // Limit to 3 digits
+    setCvv(truncated);
   };
+  
   const isCardNumberValid = (number) => {
     const cleaned = number.replace(/\D/g, ""); // Remove spaces for validation
     return cleaned.length === 16; // Check if it's 16 digits
