@@ -30,15 +30,28 @@ function CarList(){
 
         function getCorrectImageUrl(imageUrl) {
             console.log("Image URL:", imageUrl);  // Debugging the URL to ensure it's correct
-
-            if (imageUrl.includes('https%3A')) {
-
-                const decodedUrl = decodeURIComponent(imageUrl.split('/media/')[1]);
+        
+            // Case 1: If the URL contains the backend URL prefix (e.g., https://carrentalbackend-0zuw.onrender.com/media/)
+            if (imageUrl.includes('https://carrentalbackend-0zuw.onrender.com/media/')) {
+                // Remove the backend URL and decode the Supabase URL
+                const strippedUrl = imageUrl.split('https://carrentalbackend-0zuw.onrender.com/media/')[1];
+                const decodedUrl = decodeURIComponent(strippedUrl);  // Decode URL-encoded characters
+                console.log('decoded url from backend url', decodedUrl);
                 return decodedUrl;
             }
+            
+            // Case 2: If the URL contains '%3A' indicating an encoded URL (https%3A)
+            if (imageUrl.includes('https%3A')) {
+                // Decode the entire URL to handle the encoded characters
+                const decodedUrl = decodeURIComponent(imageUrl);
+                console.log('decoded url with https%3A', decodedUrl);
+                return decodedUrl;
+            }
+        
+            // If the URL doesn't match any of the above cases, return it as is
             return imageUrl;
         }
-
+        
 
         
 
