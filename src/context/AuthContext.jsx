@@ -15,6 +15,22 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  const refreshToken = async () => {
+    const refresh_token = localStorage.getItem('refresh_token');
+    if (!refresh_token) throw new Error("No refresh token available");
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/token/refresh/`, { refresh: refresh_token });
+      const newAccessToken = response.data.access;
+      localStorage.setItem('access_token', newAccessToken);
+      setToken(newAccessToken);
+      return newAccessToken;
+    } catch (error) {
+      console.error('Token refresh failed', error);
+      throw new Error("Token refresh failed");
+    }
+  };
+
   const fetchCurrentUser = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/user/`);
@@ -22,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log("Token expired, refreshing...");
+        
         try {
           const newToken = await refreshToken();
           axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
@@ -32,6 +49,7 @@ export const AuthProvider = ({ children }) => {
         }
       } else {
         console.error("Failed to fetch current user", error);
+        logout();
       }
     }
   };
@@ -71,21 +89,7 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
-  const refreshToken = async () => {
-    const refresh_token = localStorage.getItem('refresh_token');
-    if (!refresh_token) throw new Error("No refresh token available");
-
-    try {
-      const response = await axios.post(`${API_BASE_URL}/token/refresh/`, { refresh: refresh_token });
-      const newAccessToken = response.data.access;
-      localStorage.setItem('access_token', newAccessToken);
-      setToken(newAccessToken);
-      return newAccessToken;
-    } catch (error) {
-      console.error('Token refresh failed', error);
-      throw new Error("Token refresh failed");
-    }
-  };
+  
 
   return (
     <AuthContext.Provider value={{ token, login, fetchUserRentals, currentUser, refreshToken, logout }}>
