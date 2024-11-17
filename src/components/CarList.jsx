@@ -29,7 +29,10 @@ function CarList(){
         }
 
         function getCorrectImageUrl(imageUrl) {
+            console.log("Image URL:", imageUrl);  // Debugging the URL to ensure it's correct
+
             if (imageUrl.includes('https%3A')) {
+
                 const decodedUrl = decodeURIComponent(imageUrl.split('/media/')[1]);
                 return decodedUrl;
             }
