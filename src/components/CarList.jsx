@@ -35,17 +35,19 @@ function CarList(){
             if (imageUrl.includes('https://carrentalbackend-0zuw.onrender.com/media/')) {
                 // Remove the backend URL and decode the Supabase URL
                 const strippedUrl = imageUrl.split('https://carrentalbackend-0zuw.onrender.com/media/')[1];
-                const decodedUrl = decodeURIComponent(strippedUrl);  // Decode URL-encoded characters
+                let decodedUrl = decodeURIComponent(strippedUrl);  // Decode URL-encoded characters
+                decodedUrl = decodedUrl.replace(/^https:\//, 'https://');
                 console.log('decoded url from backend url', decodedUrl);
-                return decodedUrl;
+                return decodedUrl
             }
             
             // Case 2: If the URL contains '%3A' indicating an encoded URL (https%3A)
             if (imageUrl.includes('https%3A')) {
                 // Decode the entire URL to handle the encoded characters
-                const decodedUrl = decodeURIComponent(imageUrl);
+                let decodedUrl = decodeURIComponent(imageUrl);
+                decodedUrl = decodedUrl.replace(/^https:\//, 'https://');
                 console.log('decoded url with https%3A', decodedUrl);
-                return decodedUrl;
+                return decodedUrl; 
             }
         
             // If the URL doesn't match any of the above cases, return it as is
